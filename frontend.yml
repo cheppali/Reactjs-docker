@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foodorder-dev
+spec:
+  selector:
+    matchLabels:
+      app: foodorder-dev
+  template:
+    metadata:
+      labels:
+        app: foodorder-dev
+    spec:
+      containers:
+      - name: foodorder-dev
+        image: lsacrdev01.azurecr.io/reactjs:#{Build.BuildId}#
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: foodorder-dev
+spec:
+  selector:
+    app: foodorder-dev
+  ports:
+  - port: 8080
+    targetPort: 3000
+  type: LoadBalancer
+
+---
+
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: foodorder-dev
+#  annotations:
+#   kubernetes.io/ingress.class: azure/application-gateway
+#  labels:
+#    name: foodorder-dev
+#spec:
+#  rules:
+#  - host: foodorder-dev
+#    http:
+#      paths:
+#      - pathType: Prefix
+#        path: "/"
+#        backend:
+#          service:
+#            name: foodorder-dev
+#            port: 
+#              number: 3000
+
