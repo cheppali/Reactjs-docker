@@ -1,5 +1,5 @@
 # Base image
-FROM node:14-alpine
+FROM 073449301057.dkr.ecr.us-east-2.amazonaws.com/testecr
 
 # Set the working directory in the container
 WORKDIR /app
