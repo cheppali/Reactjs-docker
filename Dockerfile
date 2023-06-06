@@ -1,5 +1,5 @@
 # Base image
-FROM 073449301057.dkr.ecr.us-east-2.amazonaws.com/testecr
+FROM 073449301057.dkr.ecr.us-east-2.amazonaws.com/testecr/reactjs:v1
 
 # Set the working directory in the container
 WORKDIR /app
